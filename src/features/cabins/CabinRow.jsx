@@ -6,8 +6,9 @@ import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
 import { useCreateCabin } from "./useCreateCabin.js";
 import Modal from "@/ui/Modal.jsx";
 import ConfirmDelete from "@/ui/ConfirmDelete.jsx";
+import Table from "@/ui/Table.jsx";
 
-const TableRow = styled.div`
+/* const TableRow = styled.div`
   display: grid;
   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
   column-gap: 2.4rem;
@@ -17,7 +18,7 @@ const TableRow = styled.div`
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-100);
   }
-`;
+`; */
 
 const Img = styled.img`
   display: block;
@@ -74,7 +75,7 @@ function CabinRow({ cabin }) {
 
   return (
     <>
-      <TableRow>
+      <Table.Row>
         <Img src={image || null} />
         <Cabin>{name}</Cabin>
         <div>Fits upto {maxCapacity} guests</div>
@@ -87,7 +88,7 @@ function CabinRow({ cabin }) {
         <div>
           <Modal>
             <Modal.Open opens="update">
-              <button>
+              <button type="button" aria-label="Update Cabin">
                 <HiPencil></HiPencil>
               </button>
             </Modal.Open>
@@ -95,16 +96,20 @@ function CabinRow({ cabin }) {
               <CreateCabinForm cabinToEdit={cabin} />
             </Modal.Window>
           </Modal>
-          <button onClick={handleDuplicate}>
+          <button
+            type="button"
+            aria-label="Duplicate Cabin"
+            onClick={handleDuplicate}
+          >
             <HiSquare2Stack></HiSquare2Stack>
           </button>
           <Modal>
             <Modal.Open opens="delete">
-              <button disabled={isDeleting}>
+              <button type="button" aria-label="Delete" disabled={isDeleting}>
                 <HiTrash></HiTrash>
               </button>
             </Modal.Open>
-            <Modal.Window name="open">
+            <Modal.Window name="delete">
               <ConfirmDelete
                 resourceName="cabins"
                 disabled={isDeleting}
@@ -113,7 +118,7 @@ function CabinRow({ cabin }) {
             </Modal.Window>
           </Modal>
         </div>
-      </TableRow>
+      </Table.Row>
     </>
   );
 }
