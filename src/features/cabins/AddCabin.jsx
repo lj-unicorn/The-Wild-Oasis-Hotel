@@ -1,11 +1,23 @@
 import Button from "@/ui/Button.jsx";
-import { useState } from "react";
 import CreateCabinForm from "./CreateCabinForm.jsx";
 
 import React from "react";
 import Modal from "@/ui/Modal.jsx";
 
+
 function AddCabin() {
+  return (
+    <Modal>
+      <Modal.Open>
+        <Button>Add New Cabin</Button>
+      </Modal.Open>
+      <Modal.Window>
+        <CreateCabinForm />
+      </Modal.Window>
+    </Modal>
+  )
+}
+/* function AddCabin() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   return (
     <div>
@@ -19,6 +31,6 @@ function AddCabin() {
       )}
     </div>
   );
-}
+} */
 
 export default AddCabin;
