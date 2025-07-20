@@ -4,18 +4,17 @@ import CreateCabinForm from "./CreateCabinForm.jsx";
 import React from "react";
 import Modal from "@/ui/Modal.jsx";
 
-
 function AddCabin() {
   return (
     <Modal>
-      <Modal.Open>
+      <Modal.Open opens="cabin-form">
         <Button>Add New Cabin</Button>
       </Modal.Open>
-      <Modal.Window>
-        <CreateCabinForm />
+      <Modal.Window name="cabin-form">
+        <CreateCabinForm/>
       </Modal.Window>
     </Modal>
-  )
+  );
 }
 /* function AddCabin() {
   const [isOpenModal, setIsOpenModal] = useState(false);

@@ -131,7 +131,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
 
       <FormRow>
         <Button
-          variation="secondary"
+          $variation="secondary"
           type="reset"
           //If onclose is not required or not defined then onClose will not be called
           onClick={() => onCloseModal?.()}
