@@ -13,3 +13,18 @@ const StyledSelect = styled.select`
   font-weight: 500;
   box-shadow: var(--shadow-sm);
 `;
+
+function Select({ options, value, onChange, ...props }) {
+  // NOTE here value acts like default select at the first i.e., if nothing is choosen value = value is deafult.
+  return (
+    <StyledSelect value={value} {...props} onChange={onChange}>
+      {options.map((option) => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </StyledSelect>
+  );
+}
+
+export default Select;
