@@ -7,6 +7,7 @@ import Table from "@/ui/Table.jsx";
 import Menus from "@/ui/Menus.jsx";
 import { useSearchParams } from "react-router-dom";
 import { BiAlignLeft } from "react-icons/bi";
+import Empty from "@/ui/Empty.jsx";
 
 /* const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -36,6 +37,8 @@ function CabinTable() {
   const { cabins, isLoading } = useCabins();
   const [searchParams] = useSearchParams();
   if (isLoading) return <Spinner />;
+
+  if (!cabins.length) return <Empty resource={"cabins"} />;
 
   //FILTER
 
