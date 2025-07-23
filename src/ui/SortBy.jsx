@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 function SortBy({ options }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const currentSortBy = searchParams.get("sortBy");
+  const currentSortBy = searchParams.get("sortBy") || options.at(0).value;
 
   function handleChange(e) {
     searchParams.set("sortBy", e.target.value);
