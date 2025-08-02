@@ -1,3 +1,4 @@
+import Logout from "@/features/authentication/Logout.jsx";
 import React from "react";
 import styled from "styled-components";
 
@@ -8,7 +9,11 @@ const StyledHeader = styled.header`
 `;
 
 function Header() {
-  return <StyledHeader>Header</StyledHeader>;
+  return (
+    <StyledHeader>
+      <Logout />
+    </StyledHeader>
+  );
 }
 
 export default Header;
