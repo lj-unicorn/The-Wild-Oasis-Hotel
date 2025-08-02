@@ -6,6 +6,7 @@ import FormRowVertical from "@/ui/FormRowVertical.jsx";
 import FormRow from "@/ui/FormRow.jsx";
 import useLogin from "./useLogin.js";
 import SpinnerMini from "@/ui/SpinnerMini.jsx";
+import toast from "react-hot-toast";
 
 function LoginForm() {
   const [email, setEmail] = useState("lj@example.com");
@@ -21,6 +22,9 @@ function LoginForm() {
     login(
       { email, password },
       {
+        onError: (err) => {
+          toast.error(err.message || "Login failed");
+        },
         onSettled: () => {
           setEmail("");
           setPassword("");
@@ -33,6 +37,7 @@ function LoginForm() {
     <Form type="modal" onSubmit={handleSubmit}>
       <FormRowVertical label="Email address">
         <Input
+          required
           type="email"
           id="email"
           disabled={isLoading}
@@ -44,6 +49,7 @@ function LoginForm() {
       </FormRowVertical>
       <FormRowVertical label="Password">
         <Input
+          required
           type="password"
           id="password"
           autoComplete="current-password"
