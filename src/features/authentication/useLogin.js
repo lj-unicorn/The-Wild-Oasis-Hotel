@@ -8,11 +8,11 @@ function useLogin() {
   const queryClient = useQueryClient();
   const { mutate: login, isPending: isLoading } = useMutation({
     mutationFn: ({ email, password }) => {
-      loginApi({ email, password });
+      return loginApi({ email, password });
     },
     onSuccess: (user) => {
-      navigate("/dashboard");
-      queryClient.setQueriesData(["user"], user);
+      queryClient.setQueryData(["user"], user);
+      navigate("/dashboard", { replace: true });
     },
     onError: (err) => {
       console.error(err);
