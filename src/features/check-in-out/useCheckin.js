@@ -9,15 +9,19 @@ function useCheckin() {
 
   const { mutate: checkin, isPending: isCheckingIn } = useMutation({
     mutationFn: ({ bookingId, breakfast }) => {
-      updateBooking(bookingId, {
+      return updateBooking(bookingId, {
         status: "checked-in",
         isPaid: true,
-        ...breakfast,
+        ...(typeof breakfast === "object" && breakfast !== null ? breakfast : {}),
       });
     },
+    /**
+     * The `data` object returned from updateBooking is expected to have at least:
+     * { id: number, status: string, isPaid: boolean, ... }
+     */
     onSuccess: (data) => {
       toast.success(`Booking #${data?.id} successfully checked in`);
-      queryClient.invalidateQueries({ active: true });
+      queryClient.invalidateQueries(["bookings"]);
       navigate("/");
     },
 

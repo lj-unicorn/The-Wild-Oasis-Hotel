@@ -7,14 +7,15 @@ function useCheckout() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const { mutate: checkout, isPending: isCheckingOut } = useMutation({
+  const { mutate: checkout, isLoading: isCheckingOut } = useMutation({
     mutationFn: (bookingId) => {
-      updateBooking(bookingId, {
+      return updateBooking(bookingId, {
         status: "checked-out",
       });
     },
-    onSuccess: (data) => {
-      toast.success(`Booking #${data?.id} successfully checked out`);
+    onSuccess: (data, variables) => {
+      const bookingId = variables;
+      toast.success(`Booking #${data?.id ?? bookingId} successfully checked out`);
       queryClient.invalidateQueries({ active: true });
       navigate("/");
     },
