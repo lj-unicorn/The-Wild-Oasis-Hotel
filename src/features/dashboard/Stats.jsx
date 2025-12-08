@@ -18,11 +18,10 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
   const checkins = confirmedStays.length;
 
   //4.
+  const totalNights = confirmedStays.reduce((acc, cur) => acc + cur.numNights, 0);
+  const denominator = numDays * cabinCount;
   const occupation =
-    confirmedStays.reduce((acc, cur) => {
-      acc + cur.numNights;
-    }, 0) /
-    (numDays * cabinCount);
+    denominator > 0 ? totalNights / denominator : 0;
 
   return (
     <>
